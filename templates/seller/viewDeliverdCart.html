@@ -1,0 +1,101 @@
+{%extends "seller/sellerLayout.html"%}
+{%from "seller/sellerMacros.html" import sellerSideBar %}
+
+{%block sideBar %}
+  {{ sellerSideBar(seller,sellerInfo) }}
+{%endblock sideBar%}
+
+{%block extraCSS%}
+<link rel="stylesheet" href="{{url_for('static',filename='seller/css/cartDetails.css')}}">
+{%endblock%}
+
+
+{%block content%}
+
+  
+    <div class="wrapper">
+        <div class="h5 large">Billing Address</div>
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1">
+                <div class="mobile h5">Billing Address</div>
+                <div id="details" class="bg-white rounded pb-5">
+                    
+                    <form>
+                        <div class="form-group"> <label class="text-muted">Name</label> <input type="text" value="{{cart[0][6]}}" class="form-control" disabled> </div>
+                        <div class="form-group"> <label class="text-muted">Email</label>
+                            <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="email" value="{{cart[0][7]}}"> <span class="fas fa-check text-success pr-sm-2 pr-0"></span> </div>
+                        </div>
+                        {% set address = cart[0][9].split(',') %}
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group"> <label>City</label>
+                                    <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="{{address[0]}}"> <span class="fas fa-check text-success pr-2"></span> </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group"> <label>Zip code</label>
+                                    <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="{{address[1]}}"> <span class="fas fa-check text-success pr-2"></span> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group"> <label>Address</label>
+                                    <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="{{address[2]}}"> <span class="fas fa-check text-success pr-2"></span> </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group"> <label>State</label>
+                                    <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="{{address[3]}}"> <span class="fas fa-check text-success pr-2"></span> </div>
+                                </div>
+                            </div>
+                        </div> <label class="form-group">Country</label> 
+                        <div class="d-flex jusify-content-start align-items-center rounded p-2"> <input type="text" value="{{address[4]}}"> <span class="fas fa-check text-success pr-2"></span> </div>
+
+                    </form>
+                    
+                </div> 
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1 pt-lg-0 pt-3">
+                <div id="cart" class="bg-white rounded">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="h6">Cart Summary</div>
+                    </div>
+
+
+
+
+                    {%for product in cart[:-1]%}
+                    <div class="d-flex jusitfy-content-between align-items-center pt-3 pb-2 border-bottom">
+                       
+                        <div class="item pr-2"> <img src="{{url_for('static',filename='productImages/'+product[5])}}" alt="" width="80" height="80">
+                            <div class="number">{{product[3]}}</div>
+                        </div>
+                        <div class="d-flex flex-column px-3"> <b class="h5">{{product[1]}}</b> <a href="#" class="h5 text-primary">{{product[4]}}</a> </div>
+                        <div class="ml-auto"> <b class="h5">{{product[10]}}</b> </div>
+                        <!-- price -->
+                        
+                    </div>
+                    {%endfor%}
+                    <br>
+  
+                    <div class="d-flex align-items-center py-2 border-bottom">
+                        <div class="display-5">Shipping</div>
+                        <div class="ml-auto font-weight-bold">0</div>
+                    </div>
+                    <div class="d-flex align-items-center py-2">
+                        <div class="display-5">Total</div>
+                        <div class="ml-auto d-flex">
+                            <div class="text-primary text-uppercase px-3">Rs.</div>
+                            <div class="font-weight-bold">{{cart[-1]}}</div>
+                        </div>
+                    </div>
+                </div>
+            
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+
+{%endblock%}

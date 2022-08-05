@@ -1,0 +1,80 @@
+body {
+    background-color: #f7f6f6
+}
+
+.maincard {
+    position: absolute;
+    width: 300px;
+    height: 300px
+}
+
+.thecard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: all 0.8s ease
+}
+
+.thecard:hover {
+    transform: rotateY(180deg)
+}
+
+.thefront {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: hidden;
+    background: #8E24AA;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    padding: 10px
+}
+
+.theback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: hidden;
+    background: #BA68C8;
+    color: #fff;
+    border-radius: 10px;
+    transform: rotateY(180deg);
+    border: 1px solid #eee;
+    box-shadow: 5px 6px 6px 2px #e9ecef;
+    padding: 10px
+}
+
+.btn {
+    padding-left: 20px;
+    padding-right: 20px
+}
+
+.user_name {
+    color: #eee;
+    font-size: 10px;
+    margin-top: 0px
+}
+
+.about {
+    font-size: 12px
+}
+
+.follow-button,
+.follow-button:active,
+.follow-button:visited,
+.follow-button:focus {
+    background-color: #8E24AA !important;
+    border-color: #8E24AA !important;
+    color: #fff !important;
+    box-shadow: none
+}
+
+.follow-button:hover {
+    background-color: #69157f !important;
+    border-color: #69157f !important
+}

@@ -1,0 +1,97 @@
+{%extends "seller/sellerLayout.html"%}
+{%from "seller/sellerMacros.html" import sellerSideBar %}
+
+
+
+
+
+{%block sideBar %}
+  {{ sellerSideBar(seller,sellerInfo) }}
+{%endblock sideBar%}
+
+
+{%block content%}
+<div class="container">
+
+  <div class="row">
+    <div class="col-12 mt-3 mb-1">
+      <h5 class="text-uppercase text-light">Shop Statistics</h5>
+      <p>Orders, Products Statistics</p>
+    </div>
+  </div>
+  
+  <div class="row d-flex flex-wrap justify-content-center">
+  
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div>
+              <h3 class="text-danger">{{orders[1]}}</h3>
+              <p class="mb-0">Pending Orders</p>
+            </div>
+            <div class="align-self-center">
+              <i class="fas fa-rocket text-danger fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div>
+              <h3 class="text-success">{{orders[0]}}</h3>
+              <p class="mb-0">Delivered Orders </p>
+            </div>
+            <div class="align-self-center">
+              <i class="far fa-user text-success fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div>
+              <h3 class="text-warning">{{sellerInfo[0]}}</h3>
+              <p class="mb-0">Total Products</p>
+            </div>
+            <div class="align-self-center">
+              <i class="fas fa-chart-pie text-warning fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div>
+              <h3 class="text-info">{{sellerInfo[1]}}</h3>
+              <p class="mb-0">Approved Products</p>
+            </div>
+            <div class="align-self-center">
+              <i class="far fa-life-ring text-info fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+
+  
+
+</div>
+</div>
+{%endblock%}

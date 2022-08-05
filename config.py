@@ -1,0 +1,5 @@
+SECRET_KEY = "lsdjlsadjidacs2dnsl"
+DATABASE = "earthjoy"
+PASSWORD = "your_password"
+HOST = "localhost"
+USER = "root"

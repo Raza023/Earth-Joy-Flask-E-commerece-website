@@ -1,0 +1,92 @@
+{% extends "admin/adminLayout.html" %} {%from "admin/adminMacros.html" import
+AdminNav %} {%block nav %} {{ AdminNav() }} {%endblock nav%} 
+{%block content%}
+	<div class="container py-5">
+		{%if products|length == 0 %}
+		<div style="color: white; text-align: center; font-size: larger;">
+			No Block Products
+		</div>
+		{%endif%}	
+
+	{%for product in products%}
+		<div class="row justify-content-center mb-3">
+			<div class="col-md-12 col-xl-10">
+			<div class="card shadow-0 border rounded-3">
+				<div class="card-body">
+				<div class="row">
+					<div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+					<div class="bg-image hover-zoom ripple rounded ripple-surface">
+						<img
+						src="{{url_for('static',filename='productImages/'+product[7])}}"
+						class="w-100" alt="image not found"
+						/>
+						<a href="#!">
+						<div class="hover-overlay">
+							<div
+							class="mask"
+							style="background-color: rgba(253, 253, 253, 0.15)"
+							></div>
+						</div>
+						</a>
+					</div>
+					</div>
+					<div class="col-md-6 col-lg-6 col-xl-6">
+						<h3>{{product[0]}}, {{product[6]}}</h3>
+						<div class="d-flex flex-row">
+							<div class="text-danger mb-1 me-2">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							</div>
+							<span>Available Stock : {{product[5]}}</span>
+						</div>
+	<!--0 pName,1 categories.categoryName,2 subcategories.subcategory,3 pDescription,4 pPrice, 5 pStock, 6 pMainTag, 7 pImages, 8 seller.sellerName, 9 seller.sellerEmail-->
+						<div class="mt-1 mb-0 text-muted small">
+							<span>Seller Name</span>
+							<span class="text-primary"> • </span>
+							<span>{{product[8]}}</span>
+						</div>
+						<div class="mb-0 text-muted small">
+							<span>Product Type</span>
+							<span class="text-primary"> • </span>
+							<span>{{product[2]}}</span>
+						</div>
+						<div class="mb-2 text-muted small">
+							<span>Product Category</span>
+							<span class="text-primary"> • </span>
+							<span>{{product[1]}}</span>
+						
+						</div>
+						<h5 class="text-truncate mb-4 mb-md-0">
+							{{product[3]}}
+						</h5>
+						</div>
+						<div
+						class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start"
+						>
+						<div class="d-flex flex-row align-items-center mb-1">
+							<h4 class="mb-1 me-1">Rs. {{product[4]}}</h4>
+						</div>
+<!--0 pName,1 categories.categoryName,2 subcategories.subcategory,3 pDescription,4 pPrice, 5 pStock, 6 pMainTag, 7 pImages, 8 seller.sellerName, 9 seller.sellerEmail, 10 products.productId -->
+					<div class="d-flex flex-column mt-4">
+						<form action="/blockproductdetails" method="post">
+							<input type="text" style="display:none;" name="pid" value="{{product[10]}}" readonly>
+							<input type="submit"  class="btn btn-primary btn-sm btn-block" name="details" value="Details">
+						</form>
+						<br>
+						<form action="/unblockstatus" method="post">
+							<input type="text" style="display:none;"  name="semaila" value="{{product[9]}}" readonly>
+							<input type="text" style="display:none;"  name="pid" value="{{product[10]}}" readonly>
+							<input type="submit" class="btn btn-outline-success btn-sm btn-block" name="unblock" value="Unblock">
+						</form>
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	{%endfor%}
+  {%endblock%}
+</div>

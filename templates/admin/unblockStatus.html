@@ -1,0 +1,25 @@
+{%extends "admin/adminLayout.html"%}
+{%from "admin/adminMacros.html" import AdminNav %}
+
+{%block nav %}
+  {{ AdminNav() }}
+{%endblock nav%}
+
+{%block content%}
+{% if msg == 'Sellers account has been unblocked.' %}
+<div class="alert alert-success" role="alert">
+    <h1>{{msg}}</h1>
+    <center><h2>{{msg2}}</h2></center>
+    <br/>
+    <br/>
+    <p><a href="/blockedSellers"><input type="button" value="Go to sellers"></a></p>
+</div>
+{%else%}
+<div class="alert alert-danger" role="alert">
+    <h1>{{msg}}</h1>
+    <br/>
+    <br/>
+    <p><a href="/blockedSellers"><input type="button" value="Go to sellers"></a></p>
+</div>
+{%endif%}
+{%endblock%}

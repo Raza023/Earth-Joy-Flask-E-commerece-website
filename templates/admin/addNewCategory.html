@@ -1,0 +1,31 @@
+{% extends "admin/adminLayout.html" %} {%from "admin/adminMacros.html" import
+AdminNav %} {%block nav %} {{ AdminNav() }} {%endblock nav%}
+
+
+{%block error%}
+{%if successMsg%}
+	<div class="alert alert-dark row justify-content-center col-5" role="alert">
+		{{successMsg}}
+	</div>
+	{%elif errorMsg%}
+	<div class="alert alert-danger row justify-content-center col-5" role="alert">
+		{{errorMsg}}
+	</div>
+	{%endif%}
+
+{%endblock%}
+
+{%block content%}
+
+<div id="form" class="bg-dark row " style="height:30vh; border-radius:2vw;">
+	<form class="row g-3 mt-3 ml-5 " action = '/addNewCategoryInAction' method = "post">
+		<div class="col-md-10">
+			<label for="category" class="form-label" style="color:white;">Add New Category</label>
+		  	<input type="text" class="form-control" name="category" placeholder="New Category..." required/>
+		</div>
+		<div class="col-12">
+		  <button type="submit" class="btn btn-primary">Add Category</button>
+		</div>
+	  </form>	  
+	  {%endblock%}
+</div>

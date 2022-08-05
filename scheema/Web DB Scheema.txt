@@ -1,0 +1,481 @@
+
+
+
+CREATE TABLE `earthjoy`.`admin` ( 
+
+  `adminId` INT NOT NULL AUTO_INCREMENT, 
+
+  `adminName` VARCHAR(50) NOT NULL, 
+
+  `adminEmail` VARCHAR(45) NOT NULL, 
+
+  `adminPswd` VARCHAR(50) NOT NULL, 
+
+  `adminGender` VARCHAR(10) NOT NULL, 
+
+  `adminAddress` VARCHAR(100) NOT NULL, 
+
+  PRIMARY KEY (`adminId`), 
+
+  UNIQUE INDEX `adminId_UNIQUE` (`adminId` ASC) VISIBLE); 
+
+ 
+
+ALTER TABLE `earthjoy`.`admin`  
+
+ADD UNIQUE INDEX `adminEmail_UNIQUE` (`adminEmail` ASC) VISIBLE; 
+
+; 
+
+ 
+
+INSERT INTO `earthjoy`.`admin` (`adminId`, `adminName`, `adminEmail`, `adminPswd`, `adminGender`, `adminAddress`) VALUES ('1', 'admin', 'admin@gmail.com', 'adminbhai', 'male', 'lahore'); 
+
+ 
+
+CREATE TABLE `earthjoy`.`buyer` ( 
+
+  `buyerId` INT NOT NULL AUTO_INCREMENT, 
+
+  `buyerName` VARCHAR(45) NOT NULL, 
+
+  `buyerEmail` VARCHAR(50) NOT NULL, 
+
+  `buyerGender` VARCHAR(10) NOT NULL, 
+
+  `buyerDOB` DATE NOT NULL, 
+
+  `buyerPswd` VARCHAR(50) NOT NULL, 
+
+  `buyerPic` VARCHAR(45) NOT NULL, 
+
+  PRIMARY KEY (`buyerId`), 
+
+  UNIQUE INDEX `buyerId_UNIQUE` (`buyerId` ASC) VISIBLE, 
+
+  UNIQUE INDEX `buyerEmail_UNIQUE` (`buyerEmail` ASC) VISIBLE); 
+
+ 
+
+CREATE TABLE `earthjoy`.`seller` ( 
+
+  `sellerId` INT NOT NULL AUTO_INCREMENT, 
+
+  `sellerName` VARCHAR(45) NOT NULL, 
+
+  `sellerEmail` VARCHAR(45) NOT NULL, 
+
+  `sellerPswd` VARCHAR(45) NOT NULL, 
+
+  `sellerGender` VARCHAR(45) NOT NULL, 
+
+  `sellerAddress` VARCHAR(45) NOT NULL, 
+
+  `sellerCategory` VARCHAR(45) NOT NULL, 
+
+  `AppStatus` TINYINT NOT NULL DEFAULT 0, 
+
+  `sellerPic` VARCHAR(45) NOT NULL, 
+
+  `adminId` INT NULL, 
+
+  PRIMARY KEY (`sellerId`), 
+
+  UNIQUE INDEX `sellerId_UNIQUE` (`sellerId` ASC) VISIBLE, 
+
+  UNIQUE INDEX `sellerEmail_UNIQUE` (`sellerEmail` ASC) VISIBLE, 
+
+  INDEX `adminId_idx` (`adminId` ASC) VISIBLE, 
+
+  CONSTRAINT `adminId` 
+
+    FOREIGN KEY (`adminId`) 
+
+    REFERENCES `earthjoy`.`admin` (`adminId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION); 
+
+ 
+
+INSERT INTO `seller` (`sellerName`, `sellerEmail`, `sellerPswd`, `sellerGender`, `sellerAddress`, `sellerCategory`,`AppStatus`, `sellerPic`,`adminId`) VALUES ('Ali Raza', 'ali@gmail.com', 'alibhai', 'male', 'Lahore', 'Electronics', 'True', 'Ali.pic', '1'); 
+
+ 
+
+ 
+
+CREATE TABLE `earthjoy`.`products` (  
+
+  `productId` INT NOT NULL AUTO_INCREMENT, 
+
+  `pName` VARCHAR(100) NOT NULL, 
+
+  `pType` VARCHAR(50) NOT NULL, 
+
+  `pDescription` VARCHAR(500) NOT NULL, 
+
+  `pCategory` VARCHAR(50) NOT NULL, 
+
+  `pPrice` DOUBLE NOT NULL, 
+
+  `pStock` INT NOT NULL, 
+
+  `pMainTag` VARCHAR(100) NOT NULL, 
+
+  `pImages` VARCHAR(45) NOT NULL, 
+
+  `pAppStatus` TINYINT NOT NULL DEFAULT '0', 
+
+  `sellerId` INT NOT NULL, 
+
+  `aId` INT NOT NULL, 
+
+  `pClick` INT NOT NULL DEFAULT 0, 
+
+  PRIMARY KEY (`productId`), 
+
+  UNIQUE INDEX `productId_UNIQUE` (`productId` ASC) VISIBLE, 
+
+  INDEX `sellerId_idx` (`sellerId` ASC) VISIBLE, 
+
+  INDEX `adminId_idx` (`aId` ASC) VISIBLE, 
+
+  CONSTRAINT `sellerId` 
+
+    FOREIGN KEY (`sellerId`) 
+
+    REFERENCES `earthjoy`.`seller` (`sellerId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION, 
+
+  CONSTRAINT `aId` 
+
+    FOREIGN KEY (`aId`) 
+
+    REFERENCES `earthjoy`.`admin` (`adminId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION); 
+
+ 
+
+ALTER TABLE `earthjoy`.`products`  
+
+DROP FOREIGN KEY `aId`; 
+
+ALTER TABLE `earthjoy`.`products`  
+
+CHANGE COLUMN `aId` `aId` INT NULL ; 
+
+ALTER TABLE `earthjoy`.`products`  
+
+ADD CONSTRAINT `aId` 
+
+  FOREIGN KEY (`aId`) 
+
+  REFERENCES `earthjoy`.`admin` (`adminId`); 
+
+ 
+
+INSERT INTO `products` (`pName`, `pType`, `pDescription`, `pCategory`, `pPrice`, `pStock`,`pMainTag`, `pImages`,`pAppStatus`, `sellerId`, `aId`, `pClick`) VALUES ('Oven', 'Home Appliances', 'Made in Pakistan', 'Electronics', '5000', '400', 'PEL', 'oven.pic', 'True', '1', '1', '3' ); 
+
+ 
+
+CREATE TABLE `earthjoy`.`messages` (  
+
+  `mId` INT NOT NULL AUTO_INCREMENT, 
+
+  `message` VARCHAR(200) NOT NULL, 
+
+  `buyerId` INT NOT NULL, 
+
+  `sId` INT NOT NULL, 
+
+  `dateTime` DATETIME NOT NULL, 
+
+  PRIMARY KEY (`mId`), 
+
+  UNIQUE INDEX `mId_UNIQUE` (`mId` ASC) VISIBLE, 
+
+  INDEX `buyerId_idx` (`buyerId` ASC) VISIBLE, 
+
+  INDEX `sellerId_idx` (`sId` ASC) VISIBLE, 
+
+  CONSTRAINT `buyerId` 
+
+    FOREIGN KEY (`buyerId`) 
+
+    REFERENCES `earthjoy`.`buyer` (`buyerId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION, 
+
+  CONSTRAINT `sId` 
+
+    FOREIGN KEY (`sId`) 
+
+    REFERENCES `earthjoy`.`seller` (`sellerId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION); 
+
+ 
+
+CREATE TABLE `earthjoy`.`favourite` ( 
+
+  `fId` INT NOT NULL AUTO_INCREMENT, 
+
+  `bId` INT NOT NULL, 
+
+  `pId` INT NOT NULL, 
+
+  PRIMARY KEY (`fId`), 
+
+  UNIQUE INDEX `fId_UNIQUE` (`fId` ASC) VISIBLE, 
+
+  INDEX `bId_idx` (`bId` ASC) VISIBLE, 
+
+  INDEX `pId_idx` (`pId` ASC) VISIBLE, 
+
+  CONSTRAINT `bId` 
+
+    FOREIGN KEY (`bId`) 
+
+    REFERENCES `earthjoy`.`buyer` (`buyerId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION, 
+
+  CONSTRAINT `pId` 
+
+    FOREIGN KEY (`pId`) 
+
+    REFERENCES `earthjoy`.`products` (`productId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION); 
+
+ 
+
+ 
+
+CREATE TABLE `earthjoy`.`cart` ( 
+
+  `cartId` INT NOT NULL AUTO_INCREMENT, 
+
+  `byrid` INT NOT NULL, 
+
+  `ChkOutStatus` TINYINT NOT NULL DEFAULT 0, 
+
+  PRIMARY KEY (`cartId`), 
+
+  UNIQUE INDEX `cartId_UNIQUE` (`cartId` ASC) VISIBLE, 
+
+  INDEX `bid_idx` (`byrid` ASC) VISIBLE, 
+
+  CONSTRAINT `byrid` 
+
+    FOREIGN KEY (`byrid`) 
+
+    REFERENCES `earthjoy`.`buyer` (`buyerId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION); 
+
+ 
+
+CREATE TABLE `earthjoy`.`checkout` ( 
+
+  `chkid` INT NOT NULL AUTO_INCREMENT, 
+
+  `cartId` INT NOT NULL, 
+
+  `cartDate` DATE NOT NULL, 
+
+  `address` VARCHAR(100) NOT NULL, 
+
+  `deliveryStatus` VARCHAR(50) NOT NULL, 
+
+  PRIMARY KEY (`chkid`), 
+
+  UNIQUE INDEX `chkid_UNIQUE` (`chkid` ASC) VISIBLE, 
+
+  INDEX `cartId_idx` (`cartId` ASC) VISIBLE, 
+
+  CONSTRAINT `cartId` 
+
+    FOREIGN KEY (`cartId`) 
+
+    REFERENCES `earthjoy`.`cart` (`cartId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION); 
+
+ 
+
+CREATE TABLE `earthjoy`.`cartproduct` ( 
+
+  `cid` INT NULL, 
+
+  `productId` INT NULL, 
+
+  `prdQuantity` INT NULL DEFAULT 0, 
+
+  INDEX `cid_idx` (`cid` ASC) VISIBLE, 
+
+  INDEX `productId_idx` (`productId` ASC) VISIBLE, 
+
+  CONSTRAINT `cid` 
+
+    FOREIGN KEY (`cid`) 
+
+    REFERENCES `earthjoy`.`cart` (`cartId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION, 
+
+  CONSTRAINT `productId` 
+
+    FOREIGN KEY (`productId`) 
+
+    REFERENCES `earthjoy`.`products` (`productId`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION); 
+
+ 
+
+ 
+
+CREATE TABLE `earthjoy`.`categories` ( 
+
+  `catID` INT NOT NULL AUTO_INCREMENT, 
+
+  `categoryName` VARCHAR(45) NOT NULL, 
+
+  PRIMARY KEY (`catID`)); 
+
+   
+
+   
+
+  CREATE TABLE `earthjoy`.`subcategories` ( 
+
+  `subcatid` INT NOT NULL AUTO_INCREMENT, 
+
+  `catid` INT NOT NULL, 
+
+  `subcategory` VARCHAR(45) NOT NULL, 
+
+  PRIMARY KEY (`subcatid`), 
+
+  INDEX `catid_idx` (`catid` ASC) VISIBLE, 
+
+  CONSTRAINT `catid` 
+
+    FOREIGN KEY (`catid`) 
+
+    REFERENCES `earthjoy`.`categories` (`catID`) 
+
+    ON DELETE NO ACTION 
+
+    ON UPDATE NO ACTION); 
+
+  
+
+  
+
+ALTER TABLE `earthjoy`.`products`  
+
+CHANGE COLUMN `pType` `pType` INT NOT NULL ; 
+
+  
+
+ALTER TABLE `earthjoy`.`products`  
+
+ADD INDEX `pType_idx` (`pType` ASC) VISIBLE; 
+
+; 
+
+ALTER TABLE `earthjoy`.`products`  
+
+ADD CONSTRAINT `pType` 
+
+  FOREIGN KEY (`pType`) 
+
+  REFERENCES `earthjoy`.`subcategories` (`subcatid`) 
+
+  ON DELETE NO ACTION 
+
+  ON UPDATE NO ACTION; 
+
+ 
+
+ 
+
+ 
+
+ALTER TABLE `earthjoy`.`cartproduct`  
+
+ADD COLUMN `cpid` INT NOT NULL AUTO_INCREMENT AFTER `prdQuantity`, 
+
+ADD PRIMARY KEY (`cpid`), 
+
+ADD UNIQUE INDEX `cpid_UNIQUE` (`cpid` ASC) VISIBLE; 
+
+; 
+
+ 
+
+ALTER TABLE `earthjoy`.`seller`  
+
+ADD COLUMN `blockStatus` TINYINT NOT NULL DEFAULT 0 AFTER `adminId`; 
+
+
+
+----------------------------------------------------orders query----------------------------------------------
+
+use earthjoy;
+select products.pName, products.pType, cartproduct.prdQuantity, products.pPrice, products.pImages, buyer.buyerName, buyer.buyerEmail, 
+checkout.cartDate, checkout.address
+from checkout, cart, products, buyer, cartproduct
+where products.productId = cartproduct.productId and buyer.buyerId = cart.byrid and checkout.deliveryStatus = "pending" 
+and sellerId = 1 and cart.cartId = cartproduct.cid and checkout.cartId=cart.cartId;
+
+
+
+404 wala page
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html"),404
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

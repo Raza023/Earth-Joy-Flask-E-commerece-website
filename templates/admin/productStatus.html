@@ -1,0 +1,25 @@
+{%extends "admin/adminLayout.html"%}
+{%from "admin/adminMacros.html" import AdminNav %}
+
+{%block nav %}
+  {{ AdminNav() }}
+{%endblock nav%}
+
+{%block content%}
+{% if msg == 'Sellers product has been approved.' %}
+<div class="alert alert-success" role="alert">
+    <h1>{{msg}}</h1>
+    <center><h5>{{msg2}}</h5></center>
+    <br/>
+    <br/>
+    <p><a href="/newProducts"><input type="button" value="Go to Products"></a></p>
+</div>
+{%else%}
+<div class="alert alert-danger" role="alert">
+    <h1>{{msg}}</h1>
+    <br/>
+    <br/>
+    <p><a href="/newProducts"><input type="button" value="Go to Products"></a></p>
+</div>
+{%endif%}
+{%endblock%}

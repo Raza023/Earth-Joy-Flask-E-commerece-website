@@ -1,0 +1,37 @@
+{% extends "admin/adminLayout.html" %} {%from "admin/adminMacros.html" import
+AdminNav %} {%block nav %} {{ AdminNav() }} {%endblock nav%}
+{%block error%}
+{%if successMsg%}
+	<div class="alert alert-dark row justify-content-center col-5" role="alert">
+		{{successMsg}}
+	</div>
+	{%elif errorMsg%}
+	<div class="alert alert-danger row justify-content-center col-5" role="alert">
+		{{errorMsg}}
+	</div>
+	{%endif%}
+
+{%endblock%}
+
+{%block content%}
+<div class="card" style="width: 50vw; height:40vh">
+    <form action = "\newSubCategoryInAction" method = "post">
+      <fieldset >
+        <legend class="ml-3">Add New Sub Category</legend><br>
+        <div class="mb-1 ml-2">
+          <label for="disabledSelect" class="form-label">Select Category</label>
+          <select id="disabledSelect" class="form-select" name = "categories">
+            {%for category in categories%}
+                <option name = "categories" value="{{category[0]}}">{{category[1].upper()}}</option>
+            {%endfor%}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label ml-2">Sub Category </label>
+          <input type="text" id="disabledTextInput" required name="subcategory" class="form-control ml-2 col-4" placeholder="Sub Category" required/>
+        </div>
+        <button type="submit" class="btn btn-success ml-2">ADD</button>
+      </fieldset>
+    </form>
+  </div>
+	{%endblock%}

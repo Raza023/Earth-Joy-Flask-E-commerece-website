@@ -1,0 +1,24 @@
+{%extends "seller/sellerLayout.html"%}
+{%from "seller/sellerMacros.html" import sellerSideBar %}
+
+{%block sideBar %}
+  {{ sellerSideBar(seller,sellerInfo) }}
+{%endblock sideBar%}
+
+{%block content%}
+<span class="row d-flex justify-content-center align-items-center">
+{%for cart in carts%}
+  <div class="card text-white bg-info mb-3 m-3" style="max-width: 18rem;">
+    <div class="card-header">Buyer Name : {{cart[0][6]}}</div>
+    <div class="card-body">
+      <!-- <h5 class="card-title">Cart Status : {{(cart[0][])}}</h5> -->
+      <h5 class="card-title">Cart Date : {{(cart[0][8])}}</h5>
+      <p class="card-text text-white">Address : {{cart[0][9]}}</p>
+      <h5 class="card-footer">Total Bill: {{cart[-1]}}</h5>
+      <a href="/cartDetail/{{cart[0][0]}}"><button id="{{cart[0][0]}}" class="btn btn-primary" >View Cart</button></a>
+    </div>
+  </div>
+{%endfor%}
+</span>
+
+{%endblock%}

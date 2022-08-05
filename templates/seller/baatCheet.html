@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application Room ID: {{roomID}}{{username}}</title>
+    
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='fonts/icomoon/style.css')}}"> -->
+
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/owl.carousel.min.css')}}"> -->
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}"> -->
+    
+    <!-- Style -->
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"> -->
+    <link rel="stylesheet" href="{{url_for('static',filename='seller/css/search.css')}}">
+    
+    <link rel="stylesheet" href="{{url_for('static',filename='seller/css/baatCheet.css')}}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}"> -->
+
+
+
+</head>
+    
+<body>
+<a href="/home">
+<img id="logo" src="{{url_for('static',filename='images/earthjoy.png')}}" height="80px" width="80px" alt="" style="position: absolute; top:3.5vh;left:3vw;">
+</a>
+
+<a href="/myChat">
+  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+  width="60" height="60"
+  viewBox="0 0 172 172"
+  style=" fill:#000000; position:absolute; top:4%; right:3%; z-index:4;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M74.53333,17.2c-34.83,0 -63.06667,25.66813 -63.06667,57.33333c0,16.2632 7.49993,30.88989 19.47318,41.30911c-1.71739,5.62423 -5.29979,11.21796 -11.88099,16.20339c-0.00372,0.00374 -0.00746,0.00748 -0.0112,0.0112c-1.11129,0.42263 -1.84635,1.48737 -1.84766,2.6763c0,1.58322 1.28345,2.86667 2.86667,2.86667c0.19588,-0.00244 0.391,-0.02496 0.58229,-0.06719c11.12306,-0.03241 20.61351,-4.78364 28.16276,-10.7388c3.58246,1.45718 7.32203,2.65852 11.22031,3.49375c-1.74293,-4.93067 -2.6987,-10.18016 -2.6987,-15.62109c0,-8.24453 2.21127,-16.0132 6.04688,-22.93333h-11.78021c-3.1648,0 -5.73333,-2.56853 -5.73333,-5.73333c0,-3.1648 2.56853,-5.73333 5.73333,-5.73333h20.45859c4.65547,-4.66693 10.21161,-8.57133 16.46094,-11.46667h-36.91953c-3.1648,0 -5.73333,-2.56853 -5.73333,-5.73333c0,-3.1648 2.56853,-5.73333 5.73333,-5.73333h45.86667c3.1648,0 5.73333,2.56853 5.73333,5.73333c0,0.38413 -0.14396,0.725 -0.21276,1.0862c3.77253,-0.7052 7.67756,-1.0862 11.67942,-1.0862c7.92347,0 15.47677,1.45564 22.35104,4.08724c-3.99041,-28.1736 -30.41211,-49.95391 -62.48438,-49.95391zM114.66667,74.53333c-25.32987,0 -45.86667,17.96827 -45.86667,40.13333c0,22.16507 20.5368,40.13333 45.86667,40.13333c6.05488,0 11.81834,-1.05733 17.11042,-2.92266c7.03112,4.91169 15.54015,8.55476 25.28489,8.5888c0.19861,0.04378 0.40131,0.06631 0.60469,0.06719c1.58322,0 2.86667,-1.28345 2.86667,-2.86667c-0.00188,-1.20157 -0.7529,-2.27446 -1.88125,-2.6875c-5.24708,-3.98365 -8.6101,-8.36855 -10.62683,-12.83281c7.73285,-7.18404 12.50808,-16.83221 12.50808,-27.47969c0,-22.16507 -20.5368,-40.13333 -45.86667,-40.13333zM97.46667,97.46667h34.4c3.1648,0 5.73333,2.56853 5.73333,5.73333c0,3.1648 -2.56853,5.73333 -5.73333,5.73333h-34.4c-3.1648,0 -5.73333,-2.56853 -5.73333,-5.73333c0,-3.1648 2.56853,-5.73333 5.73333,-5.73333zM97.46667,120.4h34.4c3.1648,0 5.73333,2.56853 5.73333,5.73333c0,3.1648 -2.56853,5.73333 -5.73333,5.73333h-34.4c-3.1648,0 -5.73333,-2.56853 -5.73333,-5.73333c0,-3.1648 2.56853,-5.73333 5.73333,-5.73333z"></path></g></g></svg>
+</a>
+  
+
+
+    <section class="msger">
+        <header class="msger-header">
+          <div class="msger-header-title">
+            <i class="fas fa-comment-alt"></i> EARTH JOY
+          </div>
+          <div class="msger-header-options">
+            <span><i class="fas fa-cog"></i></span>
+          </div>
+        </header>
+      
+        <main id="msger-chat">
+
+        {%for message in messages%}
+
+          {%if message[1]==username%}
+              <div class="msg right-msg">
+                  <div
+                    class="msg-img"
+                    style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+                  ></div>
+            
+                  <div class="msg-bubble">
+                    <div class="msg-info">
+                      <div class="msg-info-name">{{message[1]}}</div>
+                      <div class="msg-info-time">{{message[2]}}</div>
+                    </div>
+            
+                    <div class="msg-text">
+                      {{message[0]}}
+                    </div>
+                  </div>
+                </div>
+            {%else%}
+            <div class="msg left-msg">
+                <div
+                 class="msg-img"
+                 style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+                ></div>
+    
+                <div class="msg-bubble">
+                  <div class="msg-info">
+                    <div class="msg-info-name">{{message[1]}}</div>
+                    <div class="msg-info-time">{{message[2]}}</div>
+                  </div>
+          
+                  <div class="msg-text">
+                    {{message[0]}}
+                  </div>
+                </div>
+              </div>
+
+            {%endif%}
+        {%endfor%}
+        </main>
+      
+        <form id="msger-inputarea">
+          <input type="text" id="msger-input" placeholder="Enter your message...">
+          <button type="submit" id="msger-send-btn">Send</button>
+        </form>
+      </section>
+      <!-- <script src="{{url_for('static',filename='js/chat.js')}}"></script> -->
+
+
+
+
+
+
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+
+      
+        document.getElementById("msger-chat").scrollTop += 500000;
+      
+
+
+      const socket = io.connect("http://127.0.0.1:5000");
+        socket.on('connect', function () {
+            socket.emit('join_room', {
+                username: "{{ username }}",
+                room: "{{ roomID }}"
+            });
+    
+            let message_input = document.getElementById('msger-input');
+                        
+            document.getElementById('msger-inputarea').onsubmit = function (e) {
+              console.log("dsa");
+                e.preventDefault();
+                  const d = new Date();
+                  let t = d.getHours()+":"+d.getMinutes();
+                let message = message_input.value.trim();
+                if (message.length) {
+                    socket.emit('send_message', {
+                        username: "{{ username }}",
+                        room: "{{ roomID }}",
+                        message: message,
+                        time : t
+                    })
+                }
+                message_input.value = '';
+                message_input.focus();
+            }
+        });
+    
+        window.onbeforeunload = function () {
+            socket.emit('leave_room', {
+                username: "{{ username }}",
+                room: "{{ roomID }}"
+            })
+        };
+    
+        socket.on('receive_message', function (data) {
+            console.log(data);
+            const newNode = document.createElement('div');
+            newNode.style.position="relative";
+            if(data.username=="{{username}}")
+            {
+                newNode.style.float="right";
+                appendMessage(data.username, "https://image.flaticon.com/icons/svg/327/327779.svg", "right",data.message,data.time)
+                //newNode.innerHTML = `<br><b>${data.username}:&nbsp;</b> ${data.message}<br>`;
+            }
+            else{
+                newNode.style.float="left";
+                appendMessage(data.username, "https://image.flaticon.com/icons/svg/327/327779.svg", "left",data.message,data.time)
+//                newNode.innerHTML = `<br><b>${data.username}:&nbsp;</b> ${data.message} <br>`;
+            }
+           // newNode.innerHTML = `<b>${data.username}:&nbsp;</b> ${data.message} <br>`;
+  //          document.getElementById('msger-chat').appendChild(newNode);
+        });
+    
+        socket.on('join_room_announcement', function (data) {
+            console.log(data);
+            if (data.username !== "{{ username }}") {
+                const newNode = document.createElement('div');
+            //    newNode.innerHTML = `<b>${data.username}</b> has joined the room`;
+                document.getElementById('msger-chat').appendChild(newNode);
+            }
+        });
+    
+        socket.on('leave_room_announcement', function (data) {
+            console.log(data);
+            const newNode = document.createElement('div');
+            newNode.innerHTML = `<b>${data.username}</b> has left the room`;
+            document.getElementById('messages').appendChild(newNode);
+        });
+
+
+
+
+
+
+
+        function appendMessage(name, img, side, text,time) {
+          const msgHTML = `
+            <div class="msg ${side}-msg">
+              <div class="msg-img" style="background-image: url(${img})"></div>
+        
+              <div class="msg-bubble">
+                <div class="msg-info">
+                  <div class="msg-info-name">${name}</div>
+                  <div class="msg-info-time">${time}</div>
+                </div>
+                <div class="msg-text">${text}</div>
+              </div>
+            </div>
+          `;
+          document.getElementById("msger-chat").insertAdjacentHTML("beforeend", msgHTML);
+          document.getElementById("msger-chat").scrollTop += 500000;
+        }
+
+    </script
+    <script src="{{url_for('static',filename='seller/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{url_for('static',filename='seller/js/popper.min.js')}}"></script>
+    <script src="{{url_for('static',filename='seller/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static',filename='seller/js/main.js')}}"></script>  
+</html>

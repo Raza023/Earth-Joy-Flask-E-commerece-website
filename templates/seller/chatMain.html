@@ -1,0 +1,27 @@
+{%extends "seller/sellerLayout.html"%}
+{%from "seller/sellerMacros.html" import sellerSideBar %}
+
+
+{%block sideBar %}
+  {{ sellerSideBar(seller,sellerInfo) }}
+{%endblock sideBar%}
+
+{%block content%}
+    <center>
+        <b class="text-light">{{msg}}</b>
+        <br>
+    </center>
+        
+    {%for buyer in buyers%}
+    <center>
+            <div id="{{buyer[0]}}" class=" col-6 m-3 " >
+                <a href="/baatcheet/{{buyer[0]}}">
+                    <div class="card-body d-flex align-items-center" style="background-color: #240e88; border-radius: 40px;">
+                        <img class="rounded-circle" src="{{url_for('static',filename='buyerImages/'+buyer[2])}}" width="40">
+                        <span class="text-light fw-bold m-2 "> {{buyer[1]}} </span>
+                    </div>
+                </a>
+            </div>
+       </center>
+    {%endfor%}
+{%endblock%}

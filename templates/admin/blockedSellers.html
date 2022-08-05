@@ -1,0 +1,87 @@
+{%extends "admin/adminLayout.html"%}
+{%from "admin/adminMacros.html" import AdminNav %}
+
+{%block nav %}
+  {{ AdminNav() }}
+{%endblock nav%}
+
+{%block extraCSS%}
+
+<style>
+
+.containers {
+    height: 100vh
+}
+
+
+.cards {
+    width: 300px;
+    border: none;
+    border-radius: 15px;
+    background-color: #fff;
+    height: 350px
+}
+
+.supper {
+    height: 100px
+}
+
+.supper img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px
+}
+
+.suser {
+    position: relative
+}
+
+
+.sprofiles {
+    position: absolute;
+    top: -50px;
+    left: 38%;
+    height: 90px;
+    width: 90px;
+    border: 3px solid #fff;
+    border-radius: 50%
+}
+
+</style>
+{%endblock extraCSS%}
+
+{%block content%}
+
+<div class="container d-flex justify-content-center flex-wrap">
+    {%if sellers|length == 0 %}
+    <div style="color: white; text-align: center; font-size: larger;">
+        No Seller Blocked
+    </div>
+    {%endif%}	
+<!--sellerName, sellerEmail, sellerPswd , sellerGender , sellerAddress , sellerCategory , AppStatus , sellerPic , admin.adminName-->
+    {%for seller in sellers%}
+        <div class="d-flex justify-content-center align-items-center m-3">
+            <div class="cards">
+                <div class="supper"> <img src="{{url_for('static',filename='logo/onlinesellerlogo.JPG')}}" class="img-fluid"> </div>
+                <div class="suser text-center d-flex justify-content-center">
+                    <div class="sprofiles"> <img src="{{url_for('static',filename='sellerImages/'+seller[7])}}" class="rounded-circle" width="80"> </div>
+                </div>
+                <div class="mt-5 text-center">
+                    <h4 class="mb-0">{{seller[0]}}</h4> <span class="text-muted d-block mb-2">{{seller[1]}}</span>
+                    <form action="/blocksellerdetails" method="post">
+                        <input type="text" style="display:none;" name="bsemaild" value="{{seller[1]}}" readonly>
+                        <input type="submit" class="btn btn-primary btn-rounded btn-lg" name="bdetails" value="Details">
+                    </form>
+                    <div class="d-flex justify-content-center align-items-center mt-4 px-4">
+                        <form action="/unblockStatus" method="post">
+                            <input type="text" style="display:none;" name="semailub" value="{{seller[1]}}" readonly>
+                            <input type="submit" class="btn btn-outline-success btn-floating" name="unblock" value="Unblock">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%endfor%}
+</div>
+
+{%endblock%}
