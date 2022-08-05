@@ -456,7 +456,7 @@ and sellerId = 1 and cart.cartId = cartproduct.cid and checkout.cartId=cart.cart
 
 
 
-404 wala page
+404 wala page  (it should be used)
 
 @app.errorhandler(404)
 def not_found(e):
