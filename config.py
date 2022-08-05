@@ -1,4 +1,4 @@
-SECRET_KEY = "lsdjlsadjidacs2dnsl"
+SECRET_KEY = "your_secret_key"
 DATABASE = "earthjoy"
 PASSWORD = "your_password"
 HOST = "localhost"
